@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Bona+Nova:ital,wght@0,400;0,700;1,400&family=Rozha+One&family=Rubik+Marker+Hatch&display=swap');
+
+@layer components {
+
+ 
+    html {
+        font-family: 'Bona Nova', serif;
+    }
+   button {
+    @apply border border-[#700000] bg-[#ddb274] p-4 w-14 
+   }
+   .btn-row {
+    @apply flex justify-around w-full py-6
+   }
+   .btn-tools {
+    @apply bg-gray-200 border-gray-300
+   }
+   span {
+    @apply text-red-700
+   }
+}

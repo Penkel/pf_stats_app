@@ -1,208 +1,69 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useEffect, useState } from "react";
+
+import Navbar from "./components/Navbar";
+import StatsInput from "./components/StatsInput";
 import StatsCompiler from "./classes/StatsCompiler";
+import { useEffect, useState } from "react";
+import ToolsPanel from "./components/ToolsPanel";
+import Conclusion from "./components/Conclusion";
+import Footer from "./components/Footer";
 
 function App() {
-  const [nums, setNums] = useState([]);
 
-  const [stats, setStats] = useState(new StatsCompiler());
-
-  function nnn(value) {
-    setNums(value);
-    console.log(nums);
-  }
-  useEffect(() => {}, [stats]);
-
-  const add_dice_given = (dice) => {
-    let dice_name;
-    switch (dice) {
-      case 4:
-        dice_name = "d_four";
-        break;
-      case 6:
-        dice_name = "d_six";
-        break;
-      case 8:
-        dice_name = "d_eight";
-        break;
-      case 10:
-        dice_name = "d_ten";
-        break;
-      case 12:
-        dice_name = "d_twelve";
-        break;
-      case 20:
-        dice_name = "d_twenty";
-        break;
-      default:
-        console.log("invalid dice");
-        return;
+  useEffect(() => {
+    document.title = 'Pathfinder Stats'
+  }, [])
+ 
+  const [stats, setStats] = useState(() => {
+    try {
+      const savedStats = localStorage.getItem('stats');
+      return savedStats ? Object.assign(new StatsCompiler(), JSON.parse(savedStats)) : new StatsCompiler();
+    } catch (error) {
+      console.error('Error loading stats from localStorage:', error);
+      return new StatsCompiler();
     }
-    console.log("да");
-    console.log(dice_name);
-    const new_stats = new StatsCompiler();
-    Object.assign(new_stats, stats);
-    new_stats.dices_given_to_allies[dice_name] += 1;
-    setStats(new_stats);
-    console.log(stats);
-  };
-
-    const add_dice_rolled = (dice) => {
-    let dice_name;
-    switch (dice) {
-      case 4:
-        dice_name = "d_four";
-        break;
-      case 6:
-        dice_name = "d_six";
-        break;
-      case 8:
-        dice_name = "d_eight";
-        break;
-      case 10:
-        dice_name = "d_ten";
-        break;
-      case 12:
-        dice_name = "d_twelve";
-        break;
-      case 20:
-        dice_name = "d_twenty";
-        break;
-      default:
-        console.log("invalid dice");
-        return;
+  });
+  const [stats_changes_history, setStatsChangesHistory] = useState(() => {
+    try {
+      const savedHistory = localStorage.getItem('history');
+      return savedHistory ? JSON.parse(savedHistory) : [];
+    } catch (error) {
+      console.error('Error loading history from localStorage:', error);
+      return [];
     }
-    console.log("да");
-    console.log(dice_name);
-    const new_stats = new StatsCompiler();
-    Object.assign(new_stats, stats);
-    new_stats.dices_rolled[dice_name] += 1;
-    setStats(new_stats);
-    console.log(stats);
-  };
+  })
 
-  const add_location_explored = (num) => {
+
+  const setStatsComplete = (value) => {
+    const currentStatsCopy = JSON.parse(JSON.stringify(stats));
+
+    const newHistory = [...stats_changes_history];
+    newHistory.push({ value_copy: currentStatsCopy });
     
-    console.log("да");
-    const new_stats = new StatsCompiler();
-    Object.assign(new_stats, stats);
-    new_stats.times_explored += num;
-    setStats(new_stats);
-    console.log(stats);
-  };
+    if (newHistory.length > 25) {
+      let removed = newHistory.shift()
+    }
+
+    console.log(newHistory, 'длина')
+    setStats(value);
+    setStatsChangesHistory(newHistory);
+
+
+    localStorage.setItem('stats', JSON.stringify(stats))
+    localStorage.setItem('history', JSON.stringify(stats_changes_history))
+  }
+
 
   return (
     <div>
-      <h1>Pathfinder Stats</h1>
-      <h2>Дал союзнику</h2>
-      <button
-        onClick={() => {
-          add_dice_given(4);
-        }}
-      >
-        д4
-      </button>
-      <button
-        onClick={() => {
-          add_dice_given(6);
-        }}
-      >
-        д6
-      </button>
-      <button
-        onClick={() => {
-          add_dice_given(8);
-        }}
-      >
-        д8
-      </button>
-      <button
-        onClick={() => {
-          add_dice_given(10);
-        }}
-      >
-        д10
-      </button>
-      <button
-        onClick={() => {
-          add_dice_given(12);
-        }}
-      >
-        д12
-      </button>
-      <button
-        onClick={() => {
-          add_dice_given(20);
-        }}
-      >
-        д20
-      </button>
-
-      <h2>Сам бросил</h2>
-      <button
-        onClick={() => {
-          add_dice_rolled(4);
-        }}
-      >
-        д4
-      </button>
-      <button
-        onClick={() => {
-          add_dice_rolled(6);
-        }}
-      >
-        д6
-      </button>
-      <button
-        onClick={() => {
-          add_dice_rolled(8);
-        }}
-      >
-        д8
-      </button>
-      <button
-        onClick={() => {
-          add_dice_rolled(10);
-        }}
-      >
-        д10
-      </button>
-      <button
-        onClick={() => {
-          add_dice_rolled(12);
-        }}
-      >
-        д12
-      </button>
-      <button
-        onClick={() => {
-          add_dice_rolled(20);
-        }}
-      >
-        д20
-      </button>
-        <h2>Исследований сделано</h2>
-         <button
-        onClick={() => {
-          add_location_explored(1);
-        }}
-      >+</button>
-         <button
-        onClick={() => {
-          add_location_explored(-1);
-        }}
-      >-</button>
-      <p>
-        Я - полезный персонаж! Я исследовал <span>{stats.times_explored}</span> раз. В этой игре я бросил
-        <span>{stats.dices_rolled.d_six}</span> d6,{" "}
-        <span>{stats.dices_rolled.d_four}</span> d4,{" "}
-        <span>{stats.dices_rolled.d_eight}</span> d8,{" "}
-        <span>{stats.dices_rolled.d_ten}</span> d10,{" "}
-        <span>{stats.dices_rolled.d_twelve}</span> d12,{" "}
-        <span>{stats.dices_rolled.d_twenty}</span> d20,
-      </p>
+      <Navbar />
+      <ToolsPanel stats={stats} setStatsComplete={setStatsComplete} history={stats_changes_history} setStatsChangesHistory={setStatsChangesHistory}/>
+      <StatsInput stats={stats} setStatsComplete={setStatsComplete} />
+      <Conclusion stats={stats} />
+      <Footer />
     </div>
+    
   );
 }
 
