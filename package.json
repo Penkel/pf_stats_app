@@ -1,4 +1,5 @@
 {
+  "homepage": "https://Penkel.github.io/pf_stats_app",
   "name": "pf_stats_app",
   "version": "0.1.0",
   "private": true,
@@ -37,7 +38,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0",
     "tailwindcss": "^3.4.18"
   }
 }
