@@ -1,16 +1,23 @@
 {
   "files": {
     "main.css": "/pf_stats_app/static/css/main.52d40c84.css",
-    "main.js": "/pf_stats_app/static/js/main.bbbd3c4d.js",
+    "main.js": "/pf_stats_app/static/js/main.f03e047d.js",
     "static/js/453.9c2ab6ba.chunk.js": "/pf_stats_app/static/js/453.9c2ab6ba.chunk.js",
+    "static/media/nuli_1.mp3": "/pf_stats_app/static/media/nuli_1.c443a66e3652ef9a6771.mp3",
+    "static/media/nuli_2.mp3": "/pf_stats_app/static/media/nuli_2.caf2300c6ba37a6e5e66.mp3",
+    "static/media/nuli_4.mp3": "/pf_stats_app/static/media/nuli_4.c99c202392f3ec6e5817.mp3",
+    "static/media/nuli_5.mp3": "/pf_stats_app/static/media/nuli_5.4c8aa6f89522204ba020.mp3",
+    "static/media/nuli_3.mp3": "/pf_stats_app/static/media/nuli_3.d68dd205ae8abf7b3cb1.mp3",
+    "static/media/nuli_6.mp3": "/pf_stats_app/static/media/nuli_6.467c70dac137e7d23551.mp3",
+    "static/media/nuli_7.mp3": "/pf_stats_app/static/media/nuli_7.8e8ffd8447a4e547ae09.mp3",
     "static/media/logo.svg": "/pf_stats_app/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/pf_stats_app/index.html",
     "main.52d40c84.css.map": "/pf_stats_app/static/css/main.52d40c84.css.map",
-    "main.bbbd3c4d.js.map": "/pf_stats_app/static/js/main.bbbd3c4d.js.map",
+    "main.f03e047d.js.map": "/pf_stats_app/static/js/main.f03e047d.js.map",
     "453.9c2ab6ba.chunk.js.map": "/pf_stats_app/static/js/453.9c2ab6ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.52d40c84.css",
-    "static/js/main.bbbd3c4d.js"
+    "static/js/main.f03e047d.js"
   ]
 }
