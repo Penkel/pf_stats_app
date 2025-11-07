@@ -11,6 +11,10 @@
     }
    button {
     @apply border border-[#700000] bg-[#ddb274] p-4 w-14 
+     transition-all duration-200 ease-in-out
+        hover:bg-[#c99a60] hover:scale-105
+        active:bg-[#b5884f] active:scale-95
+        
    }
    .btn-row {
     @apply flex justify-around w-full py-6
