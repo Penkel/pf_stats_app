@@ -67,7 +67,7 @@ const getHighestDiceRolles = (dice_set) => {
 }
 
   return (
-    <div className='py-3'>
+    <div className='py-3 px-8 text-justify'>
       <p>Я - полезный персонаж! </p>
       <p>
         Я исследовал <span>{stats.times_explored}</span> раз.
